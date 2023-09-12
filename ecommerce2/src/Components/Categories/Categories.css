@@ -1,0 +1,19 @@
+.categoriesBox{
+    display: flex;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+.categoryCard{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    
+    
+
+}
+.categoryname{
+    display: block;
+    margin: 5px;
+}
+

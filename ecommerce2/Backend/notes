@@ -1,0 +1,7 @@
+install nodemon
+install express
+install dotenvexpress.json
+use bodyparser as 
+install morgan 
+install mongoose
+

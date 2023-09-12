@@ -1,11 +1,11 @@
 import "./App.css";
 import "./styles.css";
 import { Header } from "./Components/Header";
-import { ProductComponent} from "./Components/ProductComponent";
-import { ProductDetail } from "./Components/ProductDetail";
-import { ProductList } from "./Components/ProductList";
+
 import { Router, BrowserRouter, Route, Routes } from "react-router-dom";
 import { Cart } from "./Components/Cart";
+
+import { ProductDetail } from "./Components/ProductDetail";
 
 function App() {
   return (

@@ -1,11 +1,10 @@
 import { ActionTypes } from "../Contents/action-types"
 
 const initialState = {
-    products :[]
+    products :[],
+    
 }
-const cartState = {
-    products :[]
-}
+
 
 export const productReducer = (state = initialState, {type, payload})=>{
     switch(type){
@@ -28,17 +27,5 @@ export const selectedProductReducer=(state={}, {type, payload})=>{
             return state;
     }
 
-
-}
-export const addToCartReducer=(state=cartState, {type, payload})=>{
-    switch (type) {
-        case ActionTypes.ADD_TO_CART:
-            return{ ...state, products: [...state.products,payload]}
-        
-    
-        default:
-            return state;
-    }
-    
 
 }
