@@ -42,7 +42,7 @@ app.use('/products', require('./routes/productRoute'));
 app.use('/',categoryRouter)
 
 
-app.listen(3002, () => {
+app.listen(process.env.PORT|| 3002, () => {
   console.log("server is running");
 });
 
