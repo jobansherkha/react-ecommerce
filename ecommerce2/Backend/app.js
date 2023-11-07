@@ -49,8 +49,8 @@ app.use('/category',categoryRouter)
 app.use('/user',userRouter)
 app.use('/', OrderRouter)
 
-
-app.listen(process.env.PORT|| 3002, () => {
+const ipaddress = '54.90.83.200'
+app.listen(process.env.PORT|| 3002,ipaddress , () => {
   console.log("server is running");
 });
 
