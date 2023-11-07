@@ -7,7 +7,7 @@ const userRouter = require('./routes/userRoute');
 const OrderRouter = require('./routes/orderRoute');
 const cors = require('cors');
 
-require("dotenv/config");
+require('dotenv').config(); 
 
 const api = process.env.API_URL;
 
@@ -49,8 +49,8 @@ app.use('/category',categoryRouter)
 app.use('/user',userRouter)
 app.use('/', OrderRouter)
 
-const ipaddress = '54.90.83.200'
-app.listen( 3002,ipaddress , () => {
+
+app.listen(process.env.PORT|| 3002,  () => {
   console.log("server is running");
 });
 
