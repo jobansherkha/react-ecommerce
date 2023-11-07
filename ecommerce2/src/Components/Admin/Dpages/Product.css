@@ -1,0 +1,42 @@
+/* Add this CSS to your stylesheet or use a CSS-in-JS solution */
+
+.product-table {
+  
+  padding: 20px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 260px;
+  }
+  
+  .product-table th,
+  .product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .product-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .edit-button,
+  .delete-button,
+  .create-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .create-button {
+    background-color: #28a745;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover,
+  .create-button:hover {
+    background-color: #0056b3;
+  }
+  

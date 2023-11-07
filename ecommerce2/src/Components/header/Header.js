@@ -4,9 +4,24 @@ import "./Header.css";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import logo from "../header/logo.jpg";
+import { useDispatch } from "react-redux";
+import { setProducts } from "../../redux/Reducers/productSlice";
+
+import { Link, useNavigate} from 'react-router-dom'
+import { useEffect } from "react";
 
 // Define the Header component
 export const Header = () => {
+  
+  const history = useNavigate()
+  const Logout = ()=>{
+      localStorage.removeItem('token')
+  
+      history("/login")
+  
+  
+    }
+    
   // Get the current location using React Router's useLocation hook
   let location = useLocation();
 
@@ -66,6 +81,12 @@ export const Header = () => {
                   <span className="cart-counter">{totalCartItems() || 0}</span>
                 </div>
               </a>
+              {!localStorage.getItem('token')? 
+          <ul className="navbar">      
+     <li><Link to="/user/adduser" className="btn  btn-outline-light btn-warning ">Sign Up</Link></li>
+     <li><Link to="/user/login" className="btn  btn-outline-light btn-warning">Login</Link></li></ul>
+     
+    :<li><Link to="/user/login" className="btn  btn-outline-light btn-warning" onClick={Logout}>Logout</Link> </li>}
             </li>
           </ul>
         </div>

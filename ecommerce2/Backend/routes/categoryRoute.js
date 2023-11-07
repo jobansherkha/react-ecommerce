@@ -12,7 +12,7 @@ router.get('/getcategories', async (req, res) =>{
 
 })
 router.post('/addcategory', async (req,res)=>{
-    const newCategory = await new Category({
+    const newCategory =  new Category({
         categoryName: req.body.categoryName,
         description: req.body.description
     }

@@ -1,12 +1,31 @@
 import React from 'react'
 import { useState } from 'react';
-import { useSelector } from 'react-redux'
-import { Categories } from '../Categories';
-import { addProduct } from '../../redux/Reducers/productSlice';
+
+import { setCategory } from '../../redux/Reducers/categorySlice';
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useEffect } from 'react';
+import { addItemAsync, addProduct } from '../../redux/Reducers/productSlice';
 
 
 export const AddProduct = () => {
-  <Categories/>
+  const dispatch = useDispatch();
+  
+  const fetchCategories = async () => {
+    const response = await axios
+      .get("http://localhost:3002/category/getcategories")
+      .catch((err) => {
+        console.log("err", err);
+      });
+
+      
+
+    dispatch(setCategory(response.data));
+    
+  };
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   const [product, setProduct] = useState({
     title: '',
     image: '',
@@ -16,11 +35,19 @@ export const AddProduct = () => {
   });
 
   const { categories } = useSelector((state) => state.category);
-  console.log(categories)
+  
 
-  const handleSubmit = ()=>{
-   const newproducts = addProduct(product)
-    console.log(newproducts)
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+   const newproducts = dispatch(addItemAsync(product))
+    
+    setProduct({
+      title: '',
+      image: '',
+      description: '',
+      price:'',
+      category:'',
+    })
 
   }
 
@@ -83,7 +110,7 @@ const handleChange =(e)=>{
        </option>
      ))}
    </select>
-   <button  type="submit">Add Product</button>
+   <button  onClick={handleSubmit}>Add Product</button>
  </form>
     
     </>)

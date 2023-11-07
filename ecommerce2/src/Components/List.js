@@ -16,16 +16,20 @@ export const List = () => {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
-  // Function to fetch products from the server
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get("http://localhost:3002/products");
-      console.log(response.data);
-      dispatch(setProducts(response.data));
-    } catch (error) {
-      console.log("Error fetching products", error);
-    }
-  };
+//  const fetchProducts = async () => {
+//       try {
+//         const response = await axios.get("http://localhost:3002/product/getproduct");
+//         console.log(response.data);
+//         dispatch(setProducts(response.data));
+//       } catch (error) {
+//         console.log("Error fetching products", error);
+//       }
+//     };
+//      // Fetch products when the component mounts
+//   useEffect(() => {
+//     fetchProducts();
+    
+//   }, []);
 
  
 
@@ -35,11 +39,11 @@ export const List = () => {
     console.log(cart);
   };
 
-  // Fetch products when the component mounts
-  useEffect(() => {
-    fetchProducts();
+  // // Fetch products when the component mounts
+  // useEffect(() => {
+  //   fetchProducts();
     
-  }, []);
+  // }, []);
 
   // Define the number of items to display per page
   const itemsPerPage = 8;

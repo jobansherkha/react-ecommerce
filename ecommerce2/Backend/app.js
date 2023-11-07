@@ -3,6 +3,8 @@ const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const categoryRouter = require('./routes/categoryRoute');
+const userRouter = require('./routes/userRoute');
+const OrderRouter = require('./routes/orderRoute');
 const cors = require('cors');
 
 require("dotenv/config");
@@ -16,12 +18,14 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("combined"));
 
+// admin user 
+
 
 
 // database
 mongoose
   .connect(
-    "mongodb+srv://jossanbrothers:jossansaab99@cluster0.g9acqug.mongodb.net/ecommerce?retryWrites=true&w=majority",{
+    process.env.MONGODB,{
         useNewUrlParser: true,
         useUnifiedTopology:true,
     }
@@ -33,13 +37,17 @@ mongoose
     console.log(err);
   });
 
-  app.use(express.json())
+  
 
 
-app.use('/addproducts', require('./routes/productRoute'));
-app.use('/products', require('./routes/productRoute'));
+app.use('/product', require('./routes/productRoute'))
 
-app.use('/',categoryRouter)
+
+
+
+app.use('/category',categoryRouter)
+app.use('/user',userRouter)
+app.use('/', OrderRouter)
 
 
 app.listen(process.env.PORT|| 3002, () => {

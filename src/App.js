@@ -4,8 +4,9 @@ import { Header } from "./Components/Header";
 
 import { Router, BrowserRouter, Route, Routes } from "react-router-dom";
 import { Cart } from "./Components/Cart";
+import { ProductDetail } from "./Components/productDetail";
 
-import { ProductDetail } from "./Components/ProductDetail";
+
 
 function App() {
   return (
