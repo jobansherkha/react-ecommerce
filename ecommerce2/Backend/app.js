@@ -25,7 +25,7 @@ app.use(morgan("combined"));
 // database
 mongoose
   .connect(
-    process.env.MONGODB,{
+    'mongodb+srv://jossanbrothers:jossansaab99@cluster0.g9acqug.mongodb.net/ecommerce?retryWrites=true&w=majority',{
         useNewUrlParser: true,
         useUnifiedTopology:true,
     }
@@ -50,7 +50,7 @@ app.use('/user',userRouter)
 app.use('/', OrderRouter)
 
 
-app.listen(process.env.PORT|| 3002,  () => {
+app.listen(3002,  () => {
   console.log("server is running");
 });
 
