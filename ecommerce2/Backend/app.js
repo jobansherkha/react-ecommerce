@@ -6,10 +6,9 @@ const categoryRouter = require('./routes/categoryRoute');
 const userRouter = require('./routes/userRoute');
 const OrderRouter = require('./routes/orderRoute');
 const cors = require('cors');
-const dotenv = require('dotenv');
-dotenv.config(); 
 
-const api = process.env.API_URL;
+
+
 
 //middleware
 app.use(cors());
