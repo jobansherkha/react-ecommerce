@@ -5,7 +5,12 @@ const { OrderItem } = require('../modals/orderitem');
 const { Order } = require('../modals/order');
 
 
+router.get('/getorder', async(req,res)=>{
+    const orders = await Order.find()
+    res.json(orders)
 
+
+})
 
 
 
