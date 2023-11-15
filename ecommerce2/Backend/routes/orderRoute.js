@@ -13,9 +13,15 @@ router.get('/getorder', async(req,res)=>{
 })
 
 router.get('/getuserorder',fetchuser, async(req,res)=>{
-    const orders = await Order.find({"user" : req.user._id})
-    res.json(orders)
-
+    // const orders = await Order.find({user : req.user._id})
+    // res.json(orders)
+    try {
+        const orders = await Order.find({ user: req.user.id });
+        res.json(orders);
+      } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+      }
 
 })
 
@@ -42,7 +48,7 @@ router.post('/neworder', fetchuser, async(req,res)=>{
     }))
 
     const totalPrice = totalPrices.reduce((a,b) => a +b , 0);
-    const neworder = new Order({
+    const neworder =  new Order({
         orderItems: orderitemidsresolved,
         shippingAddress2: req.body.shippingAddress2,
         city : req.body.city,
@@ -51,13 +57,13 @@ router.post('/neworder', fetchuser, async(req,res)=>{
         phone: req.body.phone,
         status: req.body.status,
         totalPrice: totalPrice,
-        user : req.user._id
+        user : req.user.id,
         
 
 
     });
 
-const savedOrder = neworder.save();
+const savedOrder = await neworder.save();
     res.json(savedOrder);
 
 })

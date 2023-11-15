@@ -13,6 +13,7 @@ const fetchuser = (req, res, next) => {
   }
   try {
     const string = jwt.verify(token, JWT_SECRET);
+    console.log(string)
     req.user = string.user;
     next();
   } catch (error) {
