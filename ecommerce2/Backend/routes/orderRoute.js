@@ -12,9 +12,15 @@ router.get('/getorder', async(req,res)=>{
 
 })
 
+router.get('/getuserorder',fetchuser, async(req,res)=>{
+    const orders = await Order.find({"user" : req.user._id})
+    res.json(orders)
 
 
-router.post('/neworder', async(req,res)=>{
+})
+
+
+router.post('/neworder', fetchuser, async(req,res)=>{
 
     const orderItemsids = Promise.all(req.body.orderItems.map(async (orderitem)=>{
 
@@ -45,6 +51,7 @@ router.post('/neworder', async(req,res)=>{
         phone: req.body.phone,
         status: req.body.status,
         totalPrice: totalPrice,
+        user : req.user._id
         
 
 
