@@ -3,10 +3,13 @@ const router = express.Router();
 const fetchuser = require('../middleware/FetchUser');
 const { OrderItem } = require('../modals/orderitem');
 const { Order } = require('../modals/order');
+const {Product} = require('../modals/productmodal');
+
+
 
 
 router.get('/getorder', async(req,res)=>{
-    const orders = await Order.find()
+    const orders = await Order.find().populate('orderitems').populate('orderitems.product')
     res.json(orders)
 
 
@@ -16,7 +19,15 @@ router.get('/getuserorder',fetchuser, async(req,res)=>{
     // const orders = await Order.find({user : req.user._id})
     // res.json(orders)
     try {
-        const orders = await Order.find({ user: req.user.id });
+        const orders = await Order.find({ user: req.user.id })
+        .populate({
+            path: 'orderItems',
+            populate: {
+              path: 'product', // Assuming there's a 'user' field in the Comment schema
+            },
+          })
+        
+       
         res.json(orders);
       } catch (error) {
         console.error(error.message);

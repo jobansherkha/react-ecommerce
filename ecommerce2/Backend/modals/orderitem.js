@@ -9,7 +9,8 @@ const orderitemsSchema = new Schema({
     },
     product: {
         type:mongoose.Schema.Types.ObjectId ,
-        ref : 'Product'
+        ref : 'Product',
+        required: true
     }
 
 })
