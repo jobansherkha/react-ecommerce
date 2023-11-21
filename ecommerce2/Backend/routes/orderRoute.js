@@ -4,6 +4,8 @@ const fetchuser = require('../middleware/FetchUser');
 const { OrderItem } = require('../modals/orderitem');
 const { Order } = require('../modals/order');
 const {Product} = require('../modals/productmodal');
+const User = require('../modals/user');
+
 
 
 
@@ -26,6 +28,7 @@ router.get('/getuserorder',fetchuser, async(req,res)=>{
               path: 'product', // Assuming there's a 'user' field in the Comment schema
             },
           })
+          .populate('user')
         
        
         res.json(orders);
