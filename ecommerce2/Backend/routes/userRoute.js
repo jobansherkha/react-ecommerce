@@ -74,9 +74,9 @@ router.post(
 //     role: 'admin', // Set the role as 'admin' for this user
 //   });
 
-router.post("/userdetails", fetchuser, async (req, res) => {
+router.get("/userdetails/:id", async (req, res) => {
   try {
-    const user = User.findById({ user: req.user.id });
+    const user = await User.findById(req.params.id );
     res.json(user);
   } catch (error) {
     console.error(error.message);
