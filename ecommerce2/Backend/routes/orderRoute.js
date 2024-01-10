@@ -11,7 +11,14 @@ const User = require('../modals/user');
 
 
 router.get('/getorder', async(req,res)=>{
-    const orders = await Order.find().populate('orderitems').populate('orderitems.product')
+    const orders = await Order.find()
+    .populate({
+        path: 'orderItems',
+        populate: {
+          path: 'product', 
+        },
+      })
+      .populate('user')
     res.json(orders)
 
 
@@ -25,7 +32,7 @@ router.get('/getuserorder',fetchuser, async(req,res)=>{
         .populate({
             path: 'orderItems',
             populate: {
-              path: 'product', // Assuming there's a 'user' field in the Comment schema
+              path: 'product', 
             },
           })
           .populate('user')
